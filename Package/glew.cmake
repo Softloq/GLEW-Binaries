@@ -1,9 +1,9 @@
 add_custom_target(
-    GLEW_Copy_DLLs
-    ALL DEPENDS ${ALL_TARGETS}
-    COMMAND "${CMAKE_COMMAND}" -E make_directory "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>"
-    COMMAND "${CMAKE_COMMAND}" -E copy "${CMAKE_CURRENT_LIST_DIR}/bin/glew.dll" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$<CONFIG>"
-)
+    Copy_GLEW_DLLs
+    COMMENT "Copying GLEW DLLs"
+    COMMAND ${CMAKE_COMMAND}
+        -DCopyPath="${CMAKE_BINARY_DIR}/$<CONFIG>/bin"
+        -P "${CMAKE_CURRENT_LIST_DIR}/copy_dll.cmake")
 
 add_library(glew-all INTERFACE)
 add_library(glew::all ALIAS glew-all)

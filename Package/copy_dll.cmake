@@ -1,0 +1,5 @@
+file(GLOB_RECURSE glew_DLLs "${CMAKE_CURRENT_LIST_DIR}/bin/*.dll")
+foreach(glew_DLL ${glew_DLLs})
+    get_filename_component(glew_DLL_name "${glew_DLL}" NAME)
+    execute_process(COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${glew_DLL}" "${CopyPath}/${glew_DLL_name}")
+endforeach()

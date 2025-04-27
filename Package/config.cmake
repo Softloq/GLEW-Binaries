@@ -6,10 +6,10 @@ add_library(glew::all ALIAS glew-all)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_custom_target(
-        GLEW-DLL-Copy
-        DEPENDS "${CMAKE_CURRENT_LIST_DIR}/__run_always"
-        COMMENT "GLEW DLL Copy"
+        Copy-GLEW-DLL
+        COMMENT "Copy GLEW DLL"
         COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_CURRENT_LIST_DIR}/bin/glew.dll" "${CMAKE_BINARY_DIR}/$<CONFIG>/bin/glew.dll"
     )
-    add_dependencies(glew-all GLEW-DLL-Copy)
+    add_dependencies(glew-all Copy-GLEW-DLL)
 endif()
+find_package(OpenGL REQUIRED)
